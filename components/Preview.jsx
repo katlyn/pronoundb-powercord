@@ -25,83 +25,85 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const { React, getModule } = require('powercord/webpack');
-const { WEBSITE } = require('../constants.js');
+const { React, getModule } = require("powercord/webpack");
+const { WEBSITE } = require("../constants.js");
 
-const ChannelMessage = getModule([ 'getElementFromMessageId' ], false).default;
-const Message = getModule(m => m.prototype && m.prototype.getReaction && m.prototype.isSystemDM, false);
-const DiscordSettings = getModule([ 'MessageDisplayCompact' ], false);
-const { getCurrentUser } = getModule([ 'getCurrentUser', 'getUser' ], false);
+const ChannelMessage = getModule(["getElementFromMessageId"], false).default;
+const Message = getModule(
+	(m) => m.prototype && m.prototype.getReaction && m.prototype.isSystemDM,
+	false
+);
+const DiscordSettings = getModule(["MessageDisplayCompact"], false);
+const { getCurrentUser } = getModule(["getCurrentUser", "getUser"], false);
 
 const CHANNEL = {
-  isPrivate: () => false,
-  isSystemDM: () => false,
-  getGuildId: () => 'uwu',
-  isThread: () => false,
-  isArchivedThread: () => false,
-  isForumChannel: () => false,
-  isForumPost: () => false,
+	isPrivate: () => false,
+	isSystemDM: () => false,
+	getGuildId: () => "uwu",
+	isThread: () => false,
+	isArchivedThread: () => false,
+	isForumChannel: () => false,
+	isForumPost: () => false,
 };
 
-const EMOJIS = [ '🎀', '🍩', '🍭', '☕', '🌸', '🌹', '🐿️', '🐈', '👒', '🧣' ]
+const EMOJIS = ["🎀", "🍩", "🍭", "☕", "🌸", "🌹", "🐿️", "🐈", "👒", "🧣"];
 
-function useMessages () {
-  const emoji = React.useMemo(() => {
-    const today = new Date()
-    if (today.getUTCMonth() === 4 && today.getUTCDate() === 30)
-      return '🎂'
-    if (today.getUTCMonth() === 6 && today.getUTCDate() === 14)
-      return '🇫🇷'
+function useMessages() {
+	const emoji = React.useMemo(() => {
+		const today = new Date();
+		if (today.getUTCMonth() === 4 && today.getUTCDate() === 30) return "🎂";
+		if (today.getUTCMonth() === 6 && today.getUTCDate() === 14) return "🇫🇷";
 
-    return EMOJIS[Math.floor(Math.random() * EMOJIS.length)]
-  })
+		return EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+	});
 
-  return React.useMemo(() => [
-    new Message({
-      id: 'pronoundb-fake-1',
-      type: 0,
-      author: getCurrentUser(),
-      content: 'Hey look, it\'s me 🤩'
-    }),
-    new Message({
-      id: 'pronoundb-fake-2',
-      type: 0,
-      author: {
-        id: '94762492923748352',
-        username: `Cynthia ${emoji}`,
-        toString: () => `Cynthia ${emoji}`,
-        isSystemUser: () => false,
-        isVerifiedBot: () => false,
-        isNonUserBot: () => false,
-        getAvatarURL: () => 'https://powercord.dev/api/v3/avatars/94762492923748352.png'
-      },
-      content: `By the way, to share your own pronouns go to ${WEBSITE} and set them there. <a:ablobcatheart:501940715077763072>`
-    })
-  ])
+	return React.useMemo(() => [
+		new Message({
+			id: "pronoundb-fake-1",
+			type: 0,
+			author: getCurrentUser(),
+			content: "Hey look, it's me 🤩",
+		}),
+		new Message({
+			id: "pronoundb-fake-2",
+			type: 0,
+			author: {
+				id: "94762492923748352",
+				username: `Cynthia ${emoji}`,
+				toString: () => `Cynthia ${emoji}`,
+				isSystemUser: () => false,
+				isVerifiedBot: () => false,
+				isNonUserBot: () => false,
+				getAvatarURL: () =>
+					"https://powercord.dev/api/v3/avatars/94762492923748352.png",
+			},
+			content: `By the way, to share your own pronouns go to ${WEBSITE} and set them there. <a:ablobcatheart:501940715077763072>`,
+		}),
+	]);
 }
 
-function Settings ({ appearance }) {
-  const compact = DiscordSettings.MessageDisplayCompact.useSetting()
-  const [ message1, message2 ] = useMessages()
+function Settings({ appearance }) {
+	const compact = DiscordSettings.MessageDisplayCompact.useSetting();
+	const [message1, message2] = useMessages();
 
-  return (
-    <ul className={`group-spacing-${compact ? '0' : '16'} pronoundb-preview`}>
-      <ChannelMessage
-        compact={compact}
-        channel={CHANNEL}
-        message={message1}
-        id={`uwu-1-${appearance}`}
-        groupId='pronoundb-fake-1'
-      />
-      <ChannelMessage
-        compact={compact}
-        channel={CHANNEL}
-        message={message2}
-        id={`uwu-2-${appearance}`}
-        groupId='pronoundb-fake-2'
-      />
-    </ul>
-  );
+	return (
+		<ul className={`group-spacing-${compact ? "0" : "16"} pronoundb-preview`}>
+			<ChannelMessage
+				compact={compact}
+				channel={CHANNEL}
+				message={message1}
+				id={`uwu-1-${appearance}`}
+				groupId="pronoundb-fake-1"
+			/>
+			<ChannelMessage
+				compact={compact}
+				channel={CHANNEL}
+				message={message2}
+				id={`uwu-2-${appearance}`}
+				groupId="pronoundb-fake-2"
+			/>
+		</ul>
+	);
 }
 
 module.exports = React.memo(Settings);
