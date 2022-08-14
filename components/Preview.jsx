@@ -61,7 +61,7 @@ function useMessages () {
       id: 'pronoundb-fake-1',
       type: 0,
       author: getCurrentUser(),
-      content: 'Hey look, its me 🤩'
+      content: 'Hey look, it\'s me 🤩'
     }),
     new Message({
       id: 'pronoundb-fake-2',
