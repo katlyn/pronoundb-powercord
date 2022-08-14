@@ -25,71 +25,72 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const WEBSITE = 'https://pronoundb.org'
+const WEBSITE = "https://pronoundb.org";
 
 const Endpoints = Object.freeze({
-  LOOKUP: (id) => `${WEBSITE}/api/v1/lookup?platform=discord&id=${id}`,
-  LOOKUP_BULK: (ids) => `${WEBSITE}/api/v1/lookup-bulk?platform=discord&ids=${ids.join(',')}`
-})
+	LOOKUP: (id) => `${WEBSITE}/api/v1/lookup?platform=discord&id=${id}`,
+	LOOKUP_BULK: (ids) =>
+		`${WEBSITE}/api/v1/lookup-bulk?platform=discord&ids=${ids.join(",")}`,
+});
 
 const Pronouns = Object.freeze({
-  unspecified: null,
-  // -- Contributors: please keep the list sorted alphabetically.
-  hh: [ 'he/him', 'He/Him' ],
-  hi: [ 'he/it', 'He/It' ],
-  hs: [ 'he/she', 'He/She' ],
-  ht: [ 'he/they', 'He/They' ],
-  ih: [ 'it/him', 'It/Him' ],
-  ii: [ 'it/its', 'It/Its' ],
-  is: [ 'it/she', 'It/She' ],
-  it: [ 'it/they', 'It/They' ],
-  shh: [ 'she/he', 'She/He' ],
-  sh: [ 'she/her', 'She/Her' ],
-  si: [ 'she/it', 'She/It' ],
-  st: [ 'she/they', 'She/They' ],
-  th: [ 'they/he', 'They/He' ],
-  ti: [ 'they/it', 'They/It' ],
-  ts: [ 'they/she', 'They/She' ],
-  tt: [ 'they/them', 'They/Them' ],
-  // --
-  any: 'Any pronouns',
-  other: 'Other pronouns',
-  ask: 'Ask me my pronouns',
-  avoid: 'Avoid pronouns, use my name',
-})
+	unspecified: null,
+	// -- Contributors: please keep the list sorted alphabetically.
+	hh: ["he/him", "He/Him"],
+	hi: ["he/it", "He/It"],
+	hs: ["he/she", "He/She"],
+	ht: ["he/they", "He/They"],
+	ih: ["it/him", "It/Him"],
+	ii: ["it/its", "It/Its"],
+	is: ["it/she", "It/She"],
+	it: ["it/they", "It/They"],
+	shh: ["she/he", "She/He"],
+	sh: ["she/her", "She/Her"],
+	si: ["she/it", "She/It"],
+	st: ["she/they", "She/They"],
+	th: ["they/he", "They/He"],
+	ti: ["they/it", "They/It"],
+	ts: ["they/she", "They/She"],
+	tt: ["they/them", "They/Them"],
+	// --
+	any: ["any pronouns", "Any pronouns"],
+	other: ["other pronouns", "Other pronouns"],
+	ask: ["ask me my pronouns", "Ask me my pronouns"],
+	avoid: ["avoid pronouns, use my name", "Avoid pronouns, use my name"],
+});
 
-const HE_EXAMPLE = 'He left his plushie there'
-const IT_EXAMPLE = 'It left its plushie there'
-const SHE_EXAMPLE = 'She left her plushie there'
-const THEY_EXAMPLE = 'They left their plushie there'
+const HE_EXAMPLE = "He left his plushie there.";
+const IT_EXAMPLE = "It left its plushie there.";
+const SHE_EXAMPLE = "She left her plushie there.";
+const THEY_EXAMPLE = "They left their plushie there.";
 
 const PronounsExample = Object.freeze({
-  hh: [ HE_EXAMPLE ],
-  hi: [ HE_EXAMPLE, IT_EXAMPLE ],
-  hs: [ HE_EXAMPLE, SHE_EXAMPLE ],
-  ht: [ HE_EXAMPLE, THEY_EXAMPLE ],
-  ih: [ IT_EXAMPLE, HE_EXAMPLE ],
-  ii: [ IT_EXAMPLE ],
-  is: [ IT_EXAMPLE, SHE_EXAMPLE ],
-  it: [ IT_EXAMPLE, THEY_EXAMPLE ],
-  shh: [ SHE_EXAMPLE, HE_EXAMPLE ],
-  sh: [ SHE_EXAMPLE ],
-  si: [ SHE_EXAMPLE, IT_EXAMPLE ],
-  st: [ SHE_EXAMPLE, THEY_EXAMPLE ],
-  th: [ THEY_EXAMPLE, HE_EXAMPLE ],
-  ti: [ THEY_EXAMPLE, IT_EXAMPLE ],
-  ts: [ THEY_EXAMPLE, SHE_EXAMPLE ],
-  tt: [ THEY_EXAMPLE ]
-})
+	hh: [HE_EXAMPLE],
+	hi: [HE_EXAMPLE, IT_EXAMPLE],
+	hs: [HE_EXAMPLE, SHE_EXAMPLE],
+	ht: [HE_EXAMPLE, THEY_EXAMPLE],
+	ih: [IT_EXAMPLE, HE_EXAMPLE],
+	ii: [IT_EXAMPLE],
+	is: [IT_EXAMPLE, SHE_EXAMPLE],
+	it: [IT_EXAMPLE, THEY_EXAMPLE],
+	shh: [SHE_EXAMPLE, HE_EXAMPLE],
+	sh: [SHE_EXAMPLE],
+	si: [SHE_EXAMPLE, IT_EXAMPLE],
+	st: [SHE_EXAMPLE, THEY_EXAMPLE],
+	th: [THEY_EXAMPLE, HE_EXAMPLE],
+	ti: [THEY_EXAMPLE, IT_EXAMPLE],
+	ts: [THEY_EXAMPLE, SHE_EXAMPLE],
+	tt: [THEY_EXAMPLE],
+});
 
 const FluxActions = Object.freeze({
-  PRONOUNS_LOADED: 'PRONOUNDB_PRONOUNS_LOADED'
-})
+	PRONOUNS_LOADED: "PRONOUNDB_PRONOUNS_LOADED",
+});
 
 module.exports = {
-  WEBSITE,
-  Endpoints,
-  Pronouns,
-  PronounsExample,
-  FluxActions
-}
+	WEBSITE,
+	Endpoints,
+	Pronouns,
+	PronounsExample,
+	FluxActions,
+};
