@@ -30,7 +30,7 @@
 	display: none !important;
 }
 
-:is(.message-2CShn3, .message-24k8JL, .messagesPopoutWrap-3zryHW, .message-username-Uploader373)
+:is(.message-2CShn3, .message-24k8JL, .messagesPopoutWrap-3zryHW, [aria-labelledby*="message-username-Uploader"])
 	.pronoundb-pronouns {
 	display: inline-block;
 	cursor: default;
@@ -42,7 +42,7 @@
 	user-select: none;
 }
 
-:is(.message-2CShn3, .message-24k8JL, .messagesPopoutWrap-3zryHW, .message-username-Uploader373)
+:is(.message-2CShn3, .message-24k8JL, .messagesPopoutWrap-3zryHW, [aria-labelledby*="message-username-Uploader"])
 	.pronoundb-pronouns
 	span {
 	user-select: text;
