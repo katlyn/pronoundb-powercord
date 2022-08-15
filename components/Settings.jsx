@@ -25,62 +25,85 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const { React } = require('powercord/webpack')
-const { RadioGroup, SwitchItem } = require('powercord/components/settings')
-const ErrorBoundary = require('./ErrorBoundary.jsx')
-const Preview = require('./Preview.jsx')
+const { React } = require("powercord/webpack");
+const { RadioGroup, SwitchItem } = require("powercord/components/settings");
+const ErrorBoundary = require("./ErrorBoundary.jsx");
+const Preview = require("./Preview.jsx");
 
-function Settings ({ getSetting, updateSetting, toggleSetting }) {
-  return (
-    <div>
-      <ErrorBoundary>
-        <Preview/>
-      </ErrorBoundary>
+function Settings({ getSetting, updateSetting, toggleSetting }) {
+	return (
+		<div>
+			<ErrorBoundary>
+				<Preview />
+			</ErrorBoundary>
 
-      <RadioGroup
-        onChange={(e) => updateSetting('format', e.value)}
-        value={getSetting('format', 'lower')}
-        options={[
-          {
-            name: 'All lowercase',
-            desc: 'Pronouns are showed in lowercase.',
-            value: 'lower'
-          },
-          {
-            name: 'Pascal case',
-            desc: 'First letter is uppercased.',
-            value: 'pascal'
-          }
-        ]}
-      >
-        Pronouns appearance
-      </RadioGroup>
+			<RadioGroup
+				onChange={(e) => updateSetting("format", e.value)}
+				value={getSetting("format", "lower")}
+				options={[
+					{
+						name: "All lowercase",
+						desc: "Pronouns are showed in lowercase.",
+						value: "lower",
+					},
+					{
+						name: "Pascal case",
+						desc: "First letter is uppercased.",
+						value: "pascal",
+					},
+				]}
+			>
+				Pronouns appearance
+			</RadioGroup>
 
-      <SwitchItem value={getSetting('display-chat', true)} onChange={() => toggleSetting('display-chat', true)}>
-        Show pronouns in chat
-      </SwitchItem>
+			<RadioGroup
+				onChange={(e) => updateSetting("format", e.value)}
+				value={getSetting("format", "uno")}
+				options={[
+					{ name: "Legacy", value: "uno" },
+					{ name: "not legacy", value: "dos" },
+				]}
+			>
+				how show pronouns in pop-outs
+			</RadioGroup>
 
-      <SwitchItem value={getSetting('display-popout', true)} onChange={() => toggleSetting('display-popout', true)}>
-        Show pronouns in pop-outs
-      </SwitchItem>
+			<SwitchItem
+				value={getSetting("display-chat", true)}
+				onChange={() => toggleSetting("display-chat", true)}
+			>
+				Show pronouns in chat
+			</SwitchItem>
 
-      <SwitchItem value={getSetting('display-profile', true)} onChange={() => toggleSetting('display-profile', true)}>
-        Show pronouns in profiles
-      </SwitchItem>
+			<SwitchItem
+				value={getSetting("display-popout", true)}
+				onChange={() => toggleSetting("display-popout", true)}
+			>
+				Show pronouns in pop-outs
+			</SwitchItem>
 
-      <SwitchItem value={getSetting('display-autocomplete', true)} onChange={() => toggleSetting('display-autocomplete', true)}>
-        Show pronouns in autocomplete
-      </SwitchItem>
+			<SwitchItem
+				value={getSetting("display-profile", true)}
+				onChange={() => toggleSetting("display-profile", true)}
+			>
+				Show pronouns in profiles
+			</SwitchItem>
 
-      <SwitchItem
-        value={getSetting('hide-self', false)}
-        onChange={() => toggleSetting('hide-self', false)}
-        note='This will locally hide your own pronouns, if you do not wish them to appear.'
-      >
-        Do not show pronouns for myself
-      </SwitchItem>
-    </div>
-  )
+			<SwitchItem
+				value={getSetting("display-autocomplete", true)}
+				onChange={() => toggleSetting("display-autocomplete", true)}
+			>
+				Show pronouns in autocomplete
+			</SwitchItem>
+
+			<SwitchItem
+				value={getSetting("hide-self", false)}
+				onChange={() => toggleSetting("hide-self", false)}
+				note="This will locally hide your own pronouns, if you do not wish them to appear."
+			>
+				Do not show pronouns for myself
+			</SwitchItem>
+		</div>
+	);
 }
 
-module.exports = React.memo(Settings)
+module.exports = React.memo(Settings);
