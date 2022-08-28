@@ -78,7 +78,7 @@ function useMessages() {
 				getAvatarURL: () =>
 					"https://powercord.dev/api/v3/avatars/94762492923748352.png",
 			},
-			content: `By the way, to share your own pronouns go to ${WEBSITE} and set them there. <a:ablobcatheart:501940715077763072>`,
+			content: `By the way, to share your own pronouns, go to ${WEBSITE} and set them there. <a:ablobcatheart:501940715077763072>`,
 		}),
 	]);
 }

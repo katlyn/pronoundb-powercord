@@ -69,3 +69,5 @@ function formatPronouns(pronounsId, format) {
 			: pronouns[0]
 		: pronouns;
 }
+
+module.exports = { wrapInHooks, formatPronouns };
