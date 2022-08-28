@@ -25,37 +25,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const { get } = require('powercord/http')
-const { React, FluxDispatcher } = require('powercord/webpack')
-const { getPronouns, shouldFetchPronouns } = require('./store.js')
-const { FluxActions, Endpoints } = require('../constants.js')
+const { get } = require("powercord/http");
+const { React, FluxDispatcher } = require("powercord/webpack");
+const { getPronouns, shouldFetchPronouns } = require("./store.js");
+const { FluxActions, Endpoints } = require("../constants.js");
 
-const SOURCE = `Powercord/2.0.0, Discord/${GLOBAL_ENV.RELEASE_CHANNEL}, Electron/${process.versions.electron}`
+const SOURCE = `Powercord/2.0.0, Discord/${GLOBAL_ENV.RELEASE_CHANNEL}, Electron/${process.versions.electron}`;
 
-async function doLoadPronoun (id) {
-  const pronouns = await get(Endpoints.LOOKUP(id))
-      .set('x-pronoundb-source', SOURCE)
-      .then((r) => r.body.pronouns || null)
-      .catch(() => null)
+async function doLoadPronoun(id) {
+	const pronouns = await get(Endpoints.LOOKUP(id))
+		.set("x-pronoundb-source", SOURCE)
+		.then((r) => r.body.pronouns || null)
+		.catch(() => null);
 
-  FluxDispatcher.dispatch({
-    type: FluxActions.PRONOUNS_LOADED,
-    pronouns: { [id]: pronouns }
-  })
+	FluxDispatcher.dispatch({
+		type: FluxActions.PRONOUNS_LOADED,
+		pronouns: { [id]: pronouns },
+	});
 
-  return pronouns;
+	return pronouns;
 }
 
-module.exports = function usePronouns (id) {
-  const [ pronouns, setPronouns ] = React.useState(null)
-  React.useEffect(() => {
-    if (!shouldFetchPronouns(id)) {
-      setPronouns(getPronouns(id) ?? 'unspecified')
-      return
-    }
+module.exports = function usePronouns(id) {
+	const [pronouns, setPronouns] = React.useState(null);
+	React.useEffect(() => {
+		if (!shouldFetchPronouns(id)) {
+			setPronouns(getPronouns(id) ?? "unspecified");
+			return;
+		}
 
-    doLoadPronoun(id).then((p) => setPronouns(p ?? 'unspecified'))
-  }, [ id ])
+		doLoadPronoun(id).then((p) => setPronouns(p ?? "unspecified"));
+	}, [id]);
 
-  return pronouns
-}
+	return pronouns;
+};

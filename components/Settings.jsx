@@ -56,17 +56,6 @@ function Settings({ getSetting, updateSetting, toggleSetting }) {
 				Pronouns appearance
 			</RadioGroup>
 
-			<RadioGroup
-				onChange={(e) => updateSetting("format", e.value)}
-				value={getSetting("format", "uno")}
-				options={[
-					{ name: "Legacy", value: "uno" },
-					{ name: "not legacy", value: "dos" },
-				]}
-			>
-				how show pronouns in pop-outs
-			</RadioGroup>
-
 			<SwitchItem
 				value={getSetting("display-chat", true)}
 				onChange={() => toggleSetting("display-chat", true)}

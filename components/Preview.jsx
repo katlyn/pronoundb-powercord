@@ -53,6 +53,7 @@ function useMessages() {
 		const today = new Date();
 		if (today.getUTCMonth() === 4 && today.getUTCDate() === 30) return "🎂";
 		if (today.getUTCMonth() === 6 && today.getUTCDate() === 14) return "🇫🇷";
+		if (today.getUTCMonth() === 2 && today.getUTCDate() === 29) return "🍋";
 
 		return EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
 	});
@@ -62,7 +63,7 @@ function useMessages() {
 			id: "pronoundb-fake-1",
 			type: 0,
 			author: getCurrentUser(),
-			content: "Hey look, it's me 🤩",
+			content: "Hey look, it's me! 🤩",
 		}),
 		new Message({
 			id: "pronoundb-fake-2",
